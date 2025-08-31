@@ -1,0 +1,17 @@
+[build]
+  publish = "static"
+  command = "python manage.py collectstatic --noinput && python manage.py build_static"
+
+[build.environment]
+  PYTHON_VERSION = "3.11"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+[context.production.environment]
+  DJANGO_SETTINGS_MODULE = "blog_project.settings"
+
+[context.deploy-preview.environment]
+  DJANGO_SETTINGS_MODULE = "blog_project.settings"
