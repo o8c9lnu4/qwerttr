@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}Блог{% endblock %}</title>
+    <link href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/@mdi/font@4.x/css/materialdesignicons.min.css" rel="stylesheet">
+</head>
+<body>
+    <div id="app">
+        <v-app>
+            <v-app-bar app color="primary" dark>
+                <v-toolbar-title>Мой блог</v-toolbar-title>
+                <v-spacer></v-spacer>
+                <v-btn text href="{% url 'blog:post_list' %}">Главная</v-btn>
+            </v-app-bar>
+
+            <v-main>
+                <v-container>
+                    {% block content %}
+                    {% endblock %}
+                </v-container>
+            </v-main>
+
+            <v-footer app color="primary" dark>
+                <v-col class="text-center" cols="12">
+                    {{ year }} — <strong>Мой блог</strong>
+                </v-col>
+            </v-footer>
+        </v-app>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
+    <script>
+        new Vue({
+            el: '#app',
+            vuetify: new Vuetify(),
+            data: {
+                year: new Date().getFullYear()
+            }
+        })
+    </script>
+</body>
+</html> 
